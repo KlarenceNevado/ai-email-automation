@@ -1,0 +1,6 @@
+.venv/
+.env
+__pycache__/
+output/
+data/processed_emails.json
+*.pyc

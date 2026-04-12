@@ -1,0 +1,12 @@
+Subject: Order Inquiry
+Hi, I want to know the status of my order #1234.
+
+---
+
+Subject: Complaint
+This is unacceptable. My package arrived damaged.
+
+---
+
+Subject: Support Request
+Can you help me reset my account password?
