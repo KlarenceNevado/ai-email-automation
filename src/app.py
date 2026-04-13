@@ -10,6 +10,17 @@ API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def home():
+    """Friendly welcome page for recruiters."""
+    return jsonify({
+        "status": "online",
+        "message": "AI Email Automation Engine API is live!",
+        "version": "2.0 Pro",
+        "author": "Klarence Nevado",
+        "usage": "Send a POST request to /process-email with a JSON body and x-api-key header."
+    })
+
 @app.route("/process-email", methods=["POST"])
 def process_email():
     """
