@@ -4,6 +4,7 @@
 [![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Automation](https://img.shields.io/badge/Automated-Pipeline-success)](https://github.com/)
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/KlarenceNevado/ai-email-automation)
 
 An industrial-grade email triage engine designed to automate the parsing, classification, and routing of incoming communications. Version 2.0 introduces the **Pro-Grade Engine**, a class-based architecture that adds intelligent priority detection, automated response drafting, and professional system observability.
 
