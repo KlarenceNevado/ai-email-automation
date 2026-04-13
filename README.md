@@ -34,6 +34,16 @@ Customer support and sales teams are often overwhelmed by unorganized email queu
 
 ---
 
+## 🔄 Automation Workflow
+This project follows a job-level automation pipeline:
+1. **Email Ingestion**: Pulls raw data from `emails.txt`.
+2. **AI Classification**: Identifies the intent (Complaint, Inquiry, etc.).
+3. **Intelligent Routing**: Automatically assigns the email to the correct department (Sales, Tech, Support).
+4. **Data Persistence**: Saves all enriched data to `processed_emails.json`.
+5. **System Execution**: Simulates final actions like sending auto-replies.
+
+---
+
 ## 🛠️ Technical Stack
 | Category | Technology | Purpose |
 | :--- | :--- | :--- |
