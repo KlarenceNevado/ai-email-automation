@@ -6,7 +6,13 @@
 [![Automation](https://img.shields.io/badge/Automated-Pipeline-success)](https://github.com/)
 [![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/KlarenceNevado/ai-email-automation)
 
-An industrial-grade email triage engine designed to automate the parsing, classification, and routing of incoming communications. Version 2.0 introduces the **Pro-Grade Engine**, a class-based architecture that adds intelligent priority detection, automated response drafting, and professional system observability.
+An industrial-grade email triage engine designed to automate the parsing, classification, and routing of incoming communications. Version 2.0 introduces the **Pro-Grade Engine**, a class-based architecture with a **Live Flask API** that adds intelligent priority detection, automated response drafting, and professional system observability.
+
+---
+
+## 🌐 Live API Service
+The automation system is deployed and accessible at:  
+👉 **[https://ai-email-automation-58ga.onrender.com/](https://ai-email-automation-58ga.onrender.com/)**
 
 ---
 
@@ -23,6 +29,23 @@ This system demonstrates production-ready software patterns:
 ## 📌 Problem Statement
 Customer support and sales teams are often overwhelmed by unorganized email queues, leading to slow response times and missed opportunities.
 **The Solution:** This engine automates the "Triage" phase—parsing raw data, identifying intent, scoring urgency, and routing it to the correct department with a draft response ready for human review.
+
+---
+
+## 🧪 API Usage Example
+You can test the live automation engine directly from your terminal:
+
+```bash
+curl -X POST https://ai-email-automation-58ga.onrender.com/process-email \
+-H "Content-Type: application/json" \
+-H "x-api-key: secret123" \
+-d '{"subject":"Urgent Order","body":"My shipment arrived damaged and I need help ASAP"}'
+```
+
+---
+
+## 🎥 Demo
+[Watch the 2-minute system demo here (Video Placeholder)](https://github.com/KlarenceNevado/ai-email-automation)
 
 ---
 
@@ -58,9 +81,9 @@ This project follows a job-level automation pipeline:
 ## 📐 Project Architecture
 ```mermaid
 graph TD
-    A[Raw Emails/txt] --> B[Parser Module]
-    B --> C[Email Object]
-    C --> D[EmailAutomationEngine]
+    A[Client Request/txt] --> B[Flask API Service]
+    B --> C[logger.py/Monitoring]
+    B --> D[EmailAutomationEngine]
     D --> E[Classifier & Logic]
     E --> F[Priority Detection]
     E --> G[Auto-Reply Draft]
