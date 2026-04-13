@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: ai-email-automation
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python src/app.py
+    envVars:
+      - key: API_KEY
+        sync: false # Requires manual entry in the dashboard for security
+      - key: PORT
+        value: 5000
