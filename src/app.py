@@ -1,14 +1,28 @@
+import os
 from flask import Flask, request, jsonify
+from dotenv import load_dotenv
 from main import classify_email, route_email, detect_priority, generate_auto_reply
+from logger import log_info, log_error
+
+# Load environment configuration
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
 
 @app.route("/process-email", methods=["POST"])
 def process_email():
     """
-    Webhook endpoint to process incoming emails in real-time.
-    Expects JSON: {"subject": "...", "body": "..."}
+    Secured Webhook endpoint to process incoming emails in real-time.
+    Requires 'x-api-key' header for authentication.
     """
+    # 1. Security Check
+    client_key = request.headers.get("x-api-key")
+    if client_key != API_KEY:
+        log_error("Unauthorized access attempt detected.")
+        return jsonify({"error": "Unauthorized"}), 401
+
+    # 2. Data Extraction
     data = request.json
     if not data:
         return jsonify({"error": "No JSON data provided"}), 400
@@ -16,13 +30,9 @@ def process_email():
     subject = data.get("subject", "No Subject")
     body = data.get("body", "")
 
-    # Create the internal email object required by the classifier
-    email_obj = {
-        "subject": subject,
-        "body": body
-    }
-
-    # Execute Pro-Grade Triage Logic
+    # 3. Execution (Pro-Grade Triage Logic)
+    email_obj = {"subject": subject, "body": body}
+    
     category = classify_email(email_obj)
     team = route_email(category)
     priority = detect_priority(email_obj)
@@ -37,11 +47,11 @@ def process_email():
         "status": "COMPLETED"
     }
 
-    # Log action to console for observability
-    print(f"[API] Processed: '{subject}' -> {team} ({priority})")
+    # 4. Observability (Logging)
+    log_info(f"PROCESSED: {subject} -> {team} ({priority})")
 
     return jsonify(result)
 
 if __name__ == "__main__":
-    # Running in debug mode for development as requested
+    log_info("Starting Production-Grade Email Automation API...")
     app.run(host="127.0.0.1", port=5000, debug=True)
